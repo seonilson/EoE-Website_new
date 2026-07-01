@@ -1,0 +1,1085 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  color: #333;
+  background: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Thin custom scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(2,44,69,0.25); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(241,97,1,0.5); }
+* { scrollbar-width: thin; scrollbar-color: rgba(2,44,69,0.25) transparent; }
+
+/* ── Image overflow fix ── */
+img { max-width: 100%; height: auto; }
+
+
+/* ════════════════════════════════════════════════════
+   MOBILE — up to 767px
+════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Base resets ── */
+  section {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+    overflow-x: hidden !important;
+  }
+
+  div[style*="maxWidth"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  h1 { font-size: clamp(28px, 8vw, 38px) !important; letter-spacing: -0.5px !important; line-height: 1.12 !important; }
+  h2 { font-size: clamp(22px, 6.5vw, 32px) !important; letter-spacing: -0.3px !important; line-height: 1.18 !important; }
+  h3 { font-size: clamp(16px, 5vw, 21px) !important; line-height: 1.3 !important; }
+  p  { font-size: 15px !important; line-height: 1.7 !important; }
+
+  /* ════════════════════
+     HERO SECTION
+  ════════════════════ */
+
+  /* Main hero inner — stack vertically */
+  .eo-hero-inner {
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 90px 16px 40px !important;
+    align-items: flex-start !important;
+    min-height: unset !important;
+  }
+
+  /* Hero left text column */
+  .eo-hero-inner > div:first-child {
+    width: 100% !important;
+    flex: unset !important;
+    padding-right: 0 !important;
+  }
+
+  /* Hero right panel (slides) — full width, reduce height */
+  div[style*="clamp(300px, 35%, 420px)"] {
+    width: 100% !important;
+    flex-shrink: unset !important;
+    min-width: 0 !important;
+    margin-top: 24px !important;
+  }
+
+  /* Slide cards — reduce padding, tighten */
+  div[style*="gridArea: \"slideStack\""] {
+    padding: 16px !important;
+  }
+
+  /* Hero H1 — tighter padding on mobile */
+  .eo-hero-inner h1 {
+    font-size: clamp(28px, 7.5vw, 38px) !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Hero badge pill */
+  .eo-hero-inner > div:first-child > div:first-child {
+    margin-bottom: 16px !important;
+  }
+
+  /* Hero paragraph */
+  .eo-hero-inner p {
+    font-size: 15px !important;
+    margin-bottom: 24px !important;
+    max-width: 100% !important;
+  }
+
+  /* Hero CTA buttons — stack on very small */
+  div[style*="flexWrap: \"wrap\""][style*="gap: \"14px\""] {
+    gap: 10px !important;
+  }
+
+  /* Hide large glow blobs behind hero text — save render */
+  div[style*="minHeight: \"100vh\""] {
+    min-height: unset !important;
+  }
+
+  /* Hero stats strip under hero */
+  div[style*="borderTop"][style*="paddingTop: \"28px\""] {
+    padding: 16px 0 !important;
+    gap: 0 !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Each stat in hero strip */
+  div[style*="flex: \"1 1 180px\""] {
+    flex: 1 1 45% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    padding: 16px 10px !important;
+    text-align: center !important;
+  }
+
+  /* ════════════════════
+     ABOUT SNIPPET
+  ════════════════════ */
+
+  /* Stack the two panels */
+  div[style*="gap: \"64px\""][style*="display: \"flex\""] {
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  div[style*="flex: \"1 1 440px\""],
+  div[style*="flex: \"1 1 500px\""] {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* About right visual panel */
+  div[style*="minHeight: \"520px\""] {
+    min-height: 280px !important;
+    width: 100% !important;
+  }
+
+  /* About inner padding */
+  div[style*="padding: \"88px 32px 96px\""] {
+    padding: 40px 16px 40px !important;
+  }
+
+  /* About floating cards — hide to prevent overflow */
+  div[style*="position: \"absolute\""][style*="bottom: \"-24px\""],
+  div[style*="position: \"absolute\""][style*="top: \"-20px\""],
+  div[style*="position: \"absolute\""][style*="right: \"-20px\""],
+  div[style*="position: \"absolute\""][style*="top: \"-32px\""],
+  div[style*="position: \"absolute\""][style*="right: \"-32px\""],
+  div[style*="position: \"absolute\""][style*="bottom: \"-32px\""] {
+    display: none !important;
+  }
+
+  /* About stat chips row */
+  .about-chip-row {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* Section header rows — stack */
+  div[style*="justifyContent: \"space-between\""][style*="marginBottom: \"72px\""],
+  div[style*="justifyContent: \"space-between\""][style*="marginBottom: \"80px\""],
+  div[style*="justifyContent: \"space-between\""][style*="marginBottom: \"56px\""],
+  div[style*="justifyContent: \"space-between\""][style*="marginBottom: \"64px\""] {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+    margin-bottom: 28px !important;
+  }
+
+  /* ════════════════════
+     DESTINATIONS
+  ════════════════════ */
+
+  .dest-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Destination cards — compact on mobile */
+  .dest-card {
+    padding: 14px 12px !important;
+    border-radius: 12px !important;
+  }
+
+  .dest-title { font-size: 13px !important; }
+
+  .dest-flag {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .dest-btn {
+    padding: 8px 10px !important;
+    font-size: 10px !important;
+  }
+
+  /* Destination benefit items — hide on mobile to save space */
+  .dest-benefit-item {
+    display: none !important;
+  }
+
+  /* ════════════════════
+     SERVICES
+  ════════════════════ */
+
+  .services-grid,
+  div[style*="gridTemplateColumns: \"repeat(auto-fill"][style*="minmax(320"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .service-card {
+    padding: 20px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Services section padding */
+  div[style*="padding: \"100px 0\""][style*="background: \"linear-gradient"],
+  div[style*="padding: \"120px 0\""][style*="background: \"linear-gradient"] {
+    padding: 56px 0 !important;
+  }
+
+  /* ════════════════════
+     UNIVERSITIES MARQUEE
+  ════════════════════ */
+
+  .uni-logo {
+    width: 100px !important;
+    height: 52px !important;
+  }
+
+  /* ════════════════════
+     TESTIMONIALS
+  ════════════════════ */
+
+  .bento-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .testi-card {
+    grid-column: span 1 !important;
+    padding: 20px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  /* Star rating row */
+  .testi-card div[style*="gap: \"3px\""] {
+    gap: 2px !important;
+  }
+
+  /* Testimonials section extra padding */
+  div[style*="padding: \"120px 0\""] {
+    padding: 56px 0 !important;
+  }
+
+  /* ════════════════════
+     RECENT BLOGS
+  ════════════════════ */
+
+  /* Blog carousel — make scrollable on mobile */
+  div[style*="display: \"flex\""][style*="gap: \"24px\""][style*="overflow"] {
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 12px !important;
+    gap: 12px !important;
+  }
+
+  /* Blog cards in carousel — full width snap */
+  div[style*="display: \"flex\""][style*="gap: \"24px\""] > div {
+    scroll-snap-align: start !important;
+    flex: 0 0 85vw !important;
+    min-width: 0 !important;
+  }
+
+  /* Blog grid two columns → single */
+  .blog-grid-bottom {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Featured blog card */
+  div[style*="maxWidth: \"720px\""] {
+    max-width: 100% !important;
+    margin: 0 0 16px !important;
+  }
+
+  /* ════════════════════
+     CONTACT SECTION
+  ════════════════════ */
+
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .contact-left {
+    padding: 28px 20px !important;
+    border-radius: 0 !important;
+  }
+
+  .form-card {
+    padding: 28px 20px !important;
+    border-radius: 0 !important;
+  }
+
+  /* Contact form input rows — single column */
+  .input-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Contact section padding */
+  div[style*="padding: \"120px 0\""][style*="background: \"#F9FAFB\""] {
+    padding: 56px 0 !important;
+  }
+
+  /* ════════════════════
+     ACCREDITATIONS
+  ════════════════════ */
+
+  svg[viewBox="0 0 1000 140"],
+  svg[viewBox="0 0 1000 160"] {
+    display: none !important;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Accreditations carousel */
+  div[style*="gridTemplateColumns: \"1fr 1.55fr 1fr\""] {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  /* Hide blurred side cards */
+  div[style*="opacity: 0.5"],
+  div[style*="opacity: 0.45"] {
+    display: none !important;
+  }
+
+  /* ICEF strip */
+  .icef-strip,
+  div[style*="gridTemplateColumns: \"1fr 1.3fr\""] {
+    grid-template-columns: 1fr !important;
+    flex-direction: column !important;
+  }
+
+  /* Why choose us two-col */
+  div[style*="gridTemplateColumns: \"1fr 1fr\""][style*="gap: \"80px\""],
+  div[style*="gridTemplateColumns: \"1fr 1fr\""][style*="gap: \"60px\""] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* ════════════════════
+     FOOTER
+  ════════════════════ */
+
+  div[style*="display: \"flex\""][style*="flexWrap: \"wrap\""][style*="gap: \"48px\""],
+  div[style*="display: \"flex\""][style*="flexWrap: \"wrap\""][style*="gap: \"40px\""] {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  /* Footer badge row */
+  div[style*="gap: \"32px\""][style*="justifyContent: \"center\""][style*="alignItems: \"center\""] {
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* ════════════════════
+     BLOG PAGES
+  ════════════════════ */
+
+  .sidebar-col { display: none !important; }
+  .related-grid { grid-template-columns: 1fr !important; }
+
+  .blog-layout {
+    flex-direction: column !important;
+  }
+
+  /* Reason / info cards */
+  .reason-card { padding: 14px !important; }
+
+  /* ════════════════════
+     POPUP MODAL
+  ════════════════════ */
+
+  .eoe-modal {
+    max-height: 92vh !important;
+    border-radius: 20px !important;
+  }
+
+  .eoe-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hide left social proof panel on small mobile — show form only */
+  .eoe-left {
+    display: none !important;
+  }
+
+  /* ════════════════════
+     HERO EVENT MODAL
+  ════════════════════ */
+
+  /* Event registration modal responsive */
+  div[style*="maxWidth: \"480px\""][style*="borderRadius: \"24px\""] {
+    border-radius: 16px !important;
+  }
+
+}
+
+
+/* ════════════════════════════════════════════════════
+   SMALL MOBILE — up to 430px (iPhone 14 Pro Max)
+════════════════════════════════════════════════════ */
+@media (max-width: 430px) {
+
+  section {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  h1 { font-size: clamp(26px, 7.5vw, 32px) !important; }
+  h2 { font-size: clamp(20px, 6.5vw, 26px) !important; }
+  h3 { font-size: clamp(15px, 5vw, 19px) !important; }
+  p  { font-size: 14.5px !important; }
+
+  /* Destinations — single column on very small */
+  .dest-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  .cert-grid { grid-template-columns: 1fr !important; }
+
+  /* Hero padding tighter */
+  .eo-hero-inner {
+    padding: 80px 14px 36px !important;
+  }
+
+  /* CTA button full width */
+  div[style*="display: \"flex\""][style*="flexWrap: \"wrap\""][style*="gap: \"16px\""] > a,
+  div[style*="display: \"flex\""][style*="flexWrap: \"wrap\""][style*="gap: \"16px\""] > button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Stats — 2x2 grid */
+  div[style*="flex: \"1 1 45%\""] {
+    flex: 1 1 45% !important;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════
+   TABLET — 768px to 1023px
+════════════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  section {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+
+  h1 { font-size: clamp(28px, 5vw, 44px) !important; }
+  h2 { font-size: clamp(24px, 4vw, 36px) !important; }
+  h3 { font-size: clamp(18px, 3vw, 24px) !important; }
+  p  { font-size: 15px !important; line-height: 1.7 !important; }
+
+  div[style*="minHeight: \"100vh\""] { min-height: 85vh !important; }
+
+  /* Tablet 2-col destinations */
+  .dest-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 14px !important; }
+
+  .cert-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  .bento-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  .testi-card:nth-child(3) { grid-column: span 2 !important; }
+  .testi-card:nth-child(4),
+  .testi-card:nth-child(5) { grid-column: span 1 !important; }
+
+  div[style*="gridTemplateColumns: \"1fr 1fr\""][style*="gap: \"80px\""] {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+
+  svg[viewBox="0 0 1000 140"] { display: none !important; }
+
+  div[style*="gridTemplateColumns: \"1fr 1.55fr 1fr\""] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .contact-grid { grid-template-columns: 1fr !important; }
+
+  div[style*="justifyContent: \"space-between\""][style*="marginBottom: \"72px\""],
+  div[style*="justifyContent: \"space-between\""][style*="marginBottom: \"80px\""] {
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    margin-bottom: 36px !important;
+  }
+
+  /* Tablet hero — keep side by side but reduce right panel */
+  div[style*="clamp(300px, 35%, 420px)"] {
+    width: clamp(260px, 40%, 360px) !important;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════
+   12-INCH LAPTOP — 1024px to 1279px
+════════════════════════════════════════════════════ */
+@media (min-width: 1024px) and (max-width: 1279px) {
+
+  section {
+    padding-top: 88px !important;
+    padding-bottom: 88px !important;
+  }
+
+  h1 { font-size: clamp(32px, 4.5vw, 52px) !important; }
+  h2 { font-size: clamp(26px, 3.5vw, 38px) !important; }
+  h3 { font-size: clamp(18px, 2.5vw, 26px) !important; }
+  p  { font-size: 15.5px !important; line-height: 1.72 !important; }
+
+  .testi-card, .service-card { padding: 22px 20px !important; }
+}
+
+
+/* ════════════════════════════════════════════════════
+   14-INCH LAPTOP — 1280px to 1439px
+════════════════════════════════════════════════════ */
+@media (min-width: 1280px) and (max-width: 1439px) {
+
+  section {
+    padding-top: 100px !important;
+    padding-bottom: 100px !important;
+  }
+
+  div[style*="maxWidth: \"1280px\""] {
+    max-width: 1180px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  h1 { font-size: clamp(36px, 4vw, 60px) !important; }
+  h2 { font-size: clamp(28px, 3.2vw, 44px) !important; }
+  h3 { font-size: clamp(20px, 2.2vw, 28px) !important; }
+  p  { font-size: 16px !important; line-height: 1.75 !important; }
+}
+
+
+/* ════════════════════════════════════════════════════
+   OTHER PAGES — MOBILE (≤767px)
+════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ════════════════════
+     ALL INNER PAGE HEROES
+     (Countries, Services, About, Gallery, Contact, Blog)
+  ════════════════════ */
+
+  /* Hero inner — stack text over image/graphic */
+  div[style*="padding: \"20px 24px 100px\""],
+  div[style*="padding: \"20px 24px 80px\""],
+  div[style*="padding: \"100px 24px\""] {
+    padding: 80px 16px 40px !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  /* Hero right graphic/image — full width below text */
+  div[style*="flex: \"1 1 45\""],
+  div[style*="flex: \"1 1 380\""],
+  div[style*="flex: \"1 1 400\""],
+  div[style*="flex: \"1 1 420\""],
+  div[style*="flex: \"1 1 450\""],
+  div[style*="flex: \"1 1 460\""],
+  div[style*="flex: \"1 1 480\""],
+  div[style*="flex: \"1 1 500\""] {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* CTA card banners (dark gradient) — compress padding */
+  div[style*="padding: \"56px 64px\""] {
+    padding: 32px 20px !important;
+    border-radius: 16px !important;
+  }
+
+  div[style*="padding: \"56px 48px\""] {
+    padding: 28px 20px !important;
+    border-radius: 16px !important;
+  }
+
+  /* ════════════════════
+     COUNTRIES PAGE
+  ════════════════════ */
+
+  /* Hero floating flags — hide on mobile */
+  div[style*="minHeight: \"460px\""] {
+    display: none !important;
+  }
+
+  /* Countries hero — text takes full width */
+  div[style*="flex: \"1 1 500px\""] {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
+
+  /* Stats strip in countries hero */
+  div[style*="gap: \"32px\""][style*="flexWrap: \"wrap\""][style*="marginBottom: \"40px\""] {
+    gap: 20px !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* Search input full width */
+  .search-input {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Country destination cards — already 2-col from .dest-grid override */
+  /* Country CTA card padding */
+  div[style*="padding: \"56px 64px\""][style*="borderRadius: \"24px\""] {
+    padding: 28px 20px !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* ════════════════════
+     SERVICE PAGES
+     (Student, Business, Visitor, Dependent, Apostille, Accommodation)
+  ════════════════════ */
+
+  /* Service hero — hide right vector illustration */
+  div[style*="flex: \"1 1 480px\""] img,
+  div[style*="flex: \"1 1 460px\""] img {
+    display: none !important;
+  }
+
+  /* Process steps grid — single column */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(280px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Reason / feature cards grid */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(320px, 1fr))\""],
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(300px, 1fr))\""],
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(260px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Service stats strip — 2x2 */
+  div[style*="display: \"flex\""][style*="flexWrap: \"wrap\""][style*="gap: \"40px\""][style*="justifyContent: \"center\""] {
+    gap: 0 !important;
+  }
+
+  /* Service process line connector — hide on mobile */
+  .process-line { display: none !important; }
+
+  /* ════════════════════
+     ABOUT PAGES
+  ════════════════════ */
+
+  /* Our Team — 3-col → 1-col */
+  .leadership-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Leader card */
+  .leader-card-white {
+    padding: 20px 16px !important;
+  }
+
+  /* Certifications grid — 2-col */
+  .cert-card-grid,
+  div[style*="gridTemplateColumns: \"repeat(auto-fill, minmax(280px, 1fr))\""],
+  div[style*="gridTemplateColumns: \"repeat(auto-fill, minmax(300px, 1fr))\""] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Company profile timeline tree — stack */
+  .tree-desktop {
+    display: none !important;
+  }
+
+  /* Company profile stats */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(200px, 1fr))\""] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* ════════════════════
+     GALLERY PAGE
+  ════════════════════ */
+
+  /* Gallery hero — text full width */
+  div[style*="padding: \"20px 24px 80px\""][style*="flexWrap: \"wrap\""] {
+    padding: 80px 16px 40px !important;
+  }
+
+  /* Gallery filter buttons — scrollable row */
+  .filter-container,
+  .filter-track {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding-bottom: 8px !important;
+    gap: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+
+  .filter-container::-webkit-scrollbar,
+  .filter-track::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .filter-btn {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding: 8px 16px !important;
+    font-size: 12px !important;
+  }
+
+  /* Gallery grid — 2-col on phone */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Testimonials bento in gallery */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Gallery CTA strip */
+  div[style*="padding: \"56px 64px\""][style*="flexWrap: \"wrap\""] {
+    padding: 28px 20px !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* ════════════════════
+     GALLERY EVENTS PAGE
+  ════════════════════ */
+
+  /* Events grid — 1 col on mobile, 2 from 640px (handled by existing @media in page) */
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* ════════════════════
+     CONTACT PAGE
+  ════════════════════ */
+
+  /* Contact page info cards */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(320px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Contact info row with icon + text + link */
+  div[style*="gridTemplateColumns: \"auto auto auto\""] {
+    grid-template-columns: auto 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Offices grid */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(240px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* ════════════════════
+     BOOK CONSULTATION
+  ════════════════════ */
+
+  /* Info cards below calendly — minmax 400px breaks mobile */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(400px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Calendly iframe — ensure full width */
+  div[style*="minWidth: \"320px\""],
+  div[style*="minWidth: \"380px\""] {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Post-booking info strip */
+  div[style*="display: \"flex\""][style*="gap: \"20px\""][style*="alignItems: \"flex-start\""][style*="flexWrap: \"wrap\""] {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* ════════════════════
+     CALCULATORS
+  ════════════════════ */
+
+  /* Calculator layout — already has own @media, but ensure full width */
+  div[style*="display: \"flex\""][style*="gap: \"60px\""][style*="flexWrap: \"wrap\""] {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  /* ════════════════════
+     COUNTRY INNER PAGES
+     (all 33 country pages)
+  ════════════════════ */
+
+  /* Country hero — stack */
+  div[style*="padding: \"20px 24px 60px\""][style*="flexWrap: \"wrap\""] {
+    padding: 80px 16px 36px !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* Tabs nav — scrollable horizontal */
+  .tabs-nav {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 8px !important;
+    gap: 6px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+  }
+
+  .tabs-nav::-webkit-scrollbar { display: none !important; }
+
+  /* Country info bar */
+  .qf-bar {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  /* Quick facts grid — 2 col */
+  div[style*="gridTemplateColumns: \"1fr 1fr 1fr\""],
+  div[style*="gridTemplateColumns: \"repeat(3, 1fr)\""] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Country explore track */
+  .explore-track {
+    gap: 10px !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 8px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Course tags */
+  .course-tags {
+    gap: 6px !important;
+  }
+
+  /* ════════════════════
+     BLOG & BLOG SLUG
+  ════════════════════ */
+
+  /* Blog listing hero */
+  div[style*="padding: \"20px 24px 80px\""][style*="alignItems: \"center\""] {
+    flex-direction: column !important;
+    padding: 80px 16px 40px !important;
+    gap: 24px !important;
+  }
+
+  /* Blog listing hero right image — smaller */
+  div[style*="flex: \"1 1 450px\""][style*="minHeight: \"400px\""] {
+    min-height: 200px !important;
+    flex: 1 1 100% !important;
+  }
+
+  /* Blog cards grid */
+  div[style*="gridTemplateColumns: \"repeat(auto-fill, minmax(340px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Featured blog card — stack */
+  .featured-card {
+    flex-direction: column !important;
+  }
+
+  .featured-img-wrap {
+    flex: unset !important;
+    min-height: 220px !important;
+    width: 100% !important;
+  }
+
+  .featured-content {
+    padding: 24px 20px !important;
+    flex: unset !important;
+  }
+
+  /* Blog slug article */
+  .blog-layout {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .sidebar-col { display: none !important; }
+  .related-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* Blog slug hero padding */
+  div[style*="padding: \"80px 24px 60px\""] {
+    padding: 80px 16px 36px !important;
+  }
+
+  /* ════════════════════
+     NOT FOUND (404)
+  ════════════════════ */
+
+  /* 404 hero */
+  div[style*="flex: \"1 1 400px\""] {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* 404 floating illustration */
+  div[style*="flex: \"1 1 280px\""][style*="minHeight: \"280px\""] {
+    display: none !important;
+  }
+
+  /* 404 quick links grid */
+  div[style*="gridTemplateColumns: \"repeat(auto-fill, minmax(260px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* 404 bottom CTA */
+  div[style*="padding: \"40px 48px\""][style*="borderRadius: \"20px\""] {
+    padding: 24px 18px !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* ════════════════════
+     ADMIN CRM
+  ════════════════════ */
+
+  /* Admin tabs — scrollable on mobile */
+  div[style*="flexWrap: \"wrap\""][style*="gap: \"6px\""] {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+    gap: 4px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Admin grid — single column on mobile */
+  div[style*="gridTemplateColumns: \"1fr 300px\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Admin sidebar sticky — not sticky on mobile */
+  div[style*="position: \"sticky\""][style*="top: \"72px\""] {
+    position: static !important;
+  }
+
+  /* Admin media grid */
+  div[style*="gridTemplateColumns: \"repeat(auto-fill,minmax(220px,1fr))\""] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  /* Admin publish button */
+  div[style*="gridTemplateColumns: \"1fr 1fr 1fr\""][style*="gap: \"12px\""] {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════
+   OTHER PAGES — SMALL MOBILE (≤430px)
+════════════════════════════════════════════════════ */
+@media (max-width: 430px) {
+
+  /* Gallery grid — 1 col on tiny phones */
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Admin media grid — 1 col */
+  div[style*="gridTemplateColumns: \"repeat(auto-fill,minmax(220px,1fr))\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Quick facts — 1 col */
+  div[style*="gridTemplateColumns: \"1fr 1fr 1fr\""],
+  div[style*="gridTemplateColumns: \"repeat(3, 1fr)\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Certifications cards — 1 col */
+  .cert-card-grid,
+  div[style*="gridTemplateColumns: \"repeat(auto-fill, minmax(280px, 1fr))\""],
+  div[style*="gridTemplateColumns: \"repeat(auto-fill, minmax(300px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════
+   OTHER PAGES — TABLET (768px to 1023px)
+════════════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+  /* Inner page heroes — reduce gap on tablet */
+  div[style*="padding: \"20px 24px 100px\""],
+  div[style*="padding: \"20px 24px 80px\""] {
+    padding: 60px 24px 60px !important;
+    gap: 32px !important;
+  }
+
+  /* Our team — 2-col on tablet */
+  .leadership-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Service cards — 2-col tablet */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(280px, 1fr))\""] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Book consultation minmax(400px) — too wide for tablet */
+  div[style*="gridTemplateColumns: \"repeat(auto-fit, minmax(400px, 1fr))\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Gallery grid — 3-col tablet */
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  /* Blog cards — 2-col tablet */
+  div[style*="gridTemplateColumns: \"repeat(auto-fill, minmax(340px, 1fr))\""] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════
+   HIGH-DPI / RETINA
+════════════════════════════════════════════════════ */
+@media (-webkit-min-device-pixel-ratio: 2) and (max-width: 1440px) {
+  body { -webkit-font-smoothing: subpixel-antialiased; }
+}
