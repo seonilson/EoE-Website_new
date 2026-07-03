@@ -89,7 +89,7 @@ function Heading({ line1, line2, color = "#022C45" }: { line1: string; line2: st
 //  UNITED KINGDOM MASTER PAGE
 // ═══════════════════════════════════════════════════════════════
 export default function CountryUKPage() {
-  useEffect(() => { document.title = "UK Student Visa Consultants in Ahmedabad | Study in UK Experts"; }, []);
+  // useEffect(() => { document.title = "UK Student Visa Consultants in Ahmedabad | Study in UK Experts"; }, []);
 
   const heroRef = useInView(0.1);
   const contentRef = useInView(0.05);

@@ -89,7 +89,7 @@ function Heading({ line1, line2, color = "#022C45" }: { line1: string; line2: st
 //  MAURITIUS MASTER PAGE
 // ═══════════════════════════════════════════════════════════════
 export default function CountryMauritiusPage() {
-  useEffect(() => { document.title = "Study in Mauritius 2026 — Student Visa, Universities & Costs | Edification Overseas"; }, []);
+  // useEffect(() => { document.title = "Study in Mauritius 2026 — Student Visa, Universities & Costs | Edification Overseas"; }, []);
 
   const heroRef = useInView(0.1);
   const contentRef = useInView(0.05);
