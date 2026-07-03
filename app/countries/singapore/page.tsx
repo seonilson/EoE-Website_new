@@ -59,7 +59,7 @@ function Section({ children, bg = "#ffffff", style = {} }: { children: React.Rea
 //  SINGAPORE MASTER COUNTRY PAGE 
 // ═══════════════════════════════════════════════════════════════
 export default function CountrySingaporePage() {
-  useEffect(() => { document.title = "Study in Singapore 2026 — Student Pass, NUS NTU & Top Universities | Edification Overseas"; }, []);
+  // useEffect(() => { document.title = "Study in Singapore 2026 — Student Pass, NUS NTU & Top Universities | Edification Overseas"; }, []);
 
   const heroRef = useInView(0.1);
   const contentRef = useInView(0.05);
