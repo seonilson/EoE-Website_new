@@ -89,8 +89,6 @@ function Heading({ line1, line2, color = "#022C45" }: { line1: string; line2: st
 //  CYPRUS MASTER PAGE
 // ═══════════════════════════════════════════════════════════════
 export default function CountryCyprusPage() {
-  useEffect(() => { document.title = "Study in Cyprus 2026 — EU Degree, Residence Permit & Universities | Edification Overseas"; }, []);
-
   const heroRef = useInView(0.1);
   const contentRef = useInView(0.05);
   const trustRef = useInView(0.1);
