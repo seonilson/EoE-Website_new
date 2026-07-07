@@ -70,6 +70,9 @@ export async function POST(req: Request) {
       author:       escapeStr(author) || 'Edification Team',
       authorRole:   escapeStr(authorRole) || 'Editorial',
       readTime:     escapeStr(readTime) || '5 min read',
+      metaTitle: form.metaTitle || "",      
+      metaDescription: form.metaDescription || "",
+      slug:form.slug || "",
       content,
     };
 

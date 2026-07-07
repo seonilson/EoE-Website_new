@@ -49,6 +49,39 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       .catch(() => setLoading(false));
   }, [slug]);
 
+
+// for metaTitle and description
+useEffect(() => {
+  if (!blog) return;
+  const title = blog.metaTitle || `${blog.title} | Edification Overseas`;
+  document.title = title;
+
+  const description = blog.metaDescription || blog.excerpt;
+  let metaDesc = document.querySelector('meta[name="description"]');
+  if (!metaDesc) {
+    metaDesc = document.createElement("meta");
+    metaDesc.setAttribute("name", "description");
+    document.head.appendChild(metaDesc);
+  }
+  metaDesc.setAttribute("content", description);
+
+  let ogTitle = document.querySelector('meta[property="og:title"]');
+  if (!ogTitle) {
+    ogTitle = document.createElement("meta");
+    ogTitle.setAttribute("property", "og:title");
+    document.head.appendChild(ogTitle);
+  }
+  ogTitle.setAttribute("content", title);
+
+  let ogDesc = document.querySelector('meta[property="og:description"]');
+  if (!ogDesc) {
+    ogDesc = document.createElement("meta");
+    ogDesc.setAttribute("property", "og:description");
+    document.head.appendChild(ogDesc);
+  }
+  ogDesc.setAttribute("content", description);
+}, [blog]);
+
   useEffect(() => {
     const handleScroll = () => {
       const headings = document.querySelectorAll(".blog-h2");
@@ -186,14 +219,23 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             {blog.content.map((section, index) => {
               if (section.type === "h2") {
                 const anchor = `section-${section.content?.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40)}`;
-                return <h2 key={index} className="blog-h2" id={anchor} style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 900, color: "#022C45", margin: "44px 0 18px", lineHeight: 1.25, letterSpacing: "-0.4px", paddingTop: "8px" }}><span style={{ color: "#F16101", marginRight: "8px", fontSize: "0.7em" }}>▌</span>{section.content}</h2>;
+                return <h2 key={index} className="blog-h2" id={anchor} style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 900, color: "#022C45", margin: "44px 0 18px", lineHeight: 1.25, letterSpacing: "-0.4px", paddingTop: "8px" }}>
+                  <span style={{ color: "#F16101", marginRight: "8px", fontSize: "0.7em" }}>▌</span>{section.content}
+                </h2>;
               }
               if (section.type === "h3") {
                 return <h3 key={index} style={{ fontSize: "19px", fontWeight: 800, color: "#022C45", margin: "32px 0 14px", paddingBottom: "8px", borderBottom: "2px solid rgba(7,203,235,0.2)", display: "inline-block" }}>{section.content}</h3>;
               }
               if (section.type === "p") {
                 const isFirst = index === 0;
-                return <p key={index} style={{ fontSize: isFirst ? "17px" : "15.5px", fontWeight: isFirst ? 600 : 400, color: isFirst ? "#022C45" : "#374151", lineHeight: 1.85, marginBottom: "24px" }}>{section.content}</p>;
+                return <p 
+                  key={index} 
+                  style={{ fontSize: isFirst ? "17px" : "15.5px", fontWeight: isFirst ? 600 : 400, color: isFirst ? "#022C45" : "#374151", lineHeight: 1.85, marginBottom: "24px" }}
+                  dangerouslySetInnerHTML={{
+                    __html: (section.content || "")
+                      .replace(/href=["']([^"']*)["']/g, 'href="$1" style="color: #F16101; text-decoration: underline;" target="_blank" rel="noopener noreferrer"')
+                  }}
+                />;
               }
               if (section.type === "list") {
                 return (
@@ -203,7 +245,12 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                         <div style={{ width: "20px", height: "20px", borderRadius: "6px", background: "rgba(241,97,1,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px" }}>
                           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#F16101" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         </div>
-                        <span>{item}</span>
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: (item || "")
+                              .replace(/href=["']([^"']*)["']/g, 'href="$1" style="color: #F16101; text-decoration: underline;" target="_blank" rel="noopener noreferrer"')
+                          }}
+                        />
                       </div>
                     ))}
                   </div>
@@ -216,7 +263,13 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
                       <div style={{ color: "#07CBEB", flexShrink: 0, marginTop: "2px" }}>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
                       </div>
-                      <p style={{ margin: 0, fontSize: "15.5px", fontWeight: 600, color: "#022C45", lineHeight: 1.65, fontStyle: "italic" }}>{section.content}</p>
+                      <p 
+                        style={{ margin: 0, fontSize: "15.5px", fontWeight: 600, color: "#022C45", lineHeight: 1.65, fontStyle: "italic" }}
+                        dangerouslySetInnerHTML={{
+                          __html: (section.content || "")
+                            .replace(/href=["']([^"']*)["']/g, 'href="$1" style="color: #07CBEB; text-decoration: underline;" target="_blank" rel="noopener noreferrer"')
+                        }}
+                      />
                     </div>
                   </div>
                 );

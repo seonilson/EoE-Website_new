@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 
+   trailingSlash: true,
+
   // ── Image Optimization ────────────────────────────────────────
   images: {
     // Tells Hostinger NOT to use CPU to resize images on the fly

@@ -24,5 +24,7 @@ export interface BlogPost {
   author: string;
   authorRole: string;
   authorImage: string;
+  metaTitle?: string;
+  metaDescription?: string;
   content: BlogSection[];
 }

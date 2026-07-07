@@ -9,7 +9,7 @@ type Tab = "write" | "manage" | "gallery" | "events-photos" | "events-slide" | "
 type ManageView = "list" | "edit";
 
 interface Block { id: string; type: BlockType; heading?: string; content: string; items?: string[]; }
-interface FormData { title: string; excerpt: string; category: string; coverImage: string; metaKeywords: string; author: string; authorRole: string; readTime: string; blocks: Block[]; }
+interface FormData { title: string; excerpt: string; category: string; coverImage: string; metaKeywords: string; author: string; authorRole: string; readTime: string;slug: string;  metaTitle: string; metaDescription: string; blocks: Block[]; }
 interface PopupConfig { announcementEnabled: boolean; announcementImage: string; announcementLink: string; announcementAlt: string; }
 interface GalleryItem { id: string; type: string; category: string; title: string; desc: string; src: string; }
 interface EventPhoto  { id: string; title: string; desc: string; src: string; }
@@ -25,6 +25,7 @@ const emptyForm = (): FormData => ({
   title: "", excerpt: "", category: "Visa Guides",
   coverImage: "", metaKeywords: "",
   author: "Edification Team", authorRole: "Editorial", readTime: "5 min read",
+  slug: "", metaTitle: "", metaDescription: "",
   blocks: [makeBlock("intro"), makeBlock("h2"), makeBlock("h2"), makeBlock("h2"), makeBlock("h2")],
 });
 
@@ -42,17 +43,22 @@ const BLOCK_META: Record<BlockType,{label:string;color:string;desc:string}> = {
 };
 
 function postToForm(post: BlogPost): FormData {
-  const blocks: Block[] = post.content.map(s => {
+  const blocks: Block[] = post.content.map((s, idx) => {
     if (s.type==="h2")   return {id:uid(),type:"h2",heading:s.content||"",content:"",items:undefined};
     if (s.type==="list") return {id:uid(),type:"list",content:"",items:s.items||[],heading:undefined};
-    return {id:uid(),type:s.type as BlockType,content:s.content||"",heading:undefined,items:undefined};
+    const blockType = idx===0 && s.type==="p" ? "p" : (s.type as BlockType);
+    return {id:uid(),type:blockType,content:s.content||"",heading:undefined,items:undefined};
   });
-  return { title:post.title, excerpt:post.excerpt, category:post.category,
+  return {
+    title:post.title, excerpt:post.excerpt, category:post.category,
     coverImage:post.coverImage, metaKeywords:post.metaKeywords,
     author:post.author, authorRole:post.authorRole, readTime:post.readTime,
-    blocks: blocks.length ? blocks : [makeBlock("intro"),makeBlock("h2")] };
+    slug: post.slug || "",                          
+    metaTitle: (post as any).metaTitle || "",        
+    metaDescription: (post as any).metaDescription || "",
+    blocks: blocks.length ? blocks : [makeBlock("intro"),makeBlock("h2")]
+  };
 }
-
 // ── Tab config ────────────────────────────────────────────────
 const TABS: {id: Tab; label: string; icon: string}[] = [
   {id:"write",         label:"Write Blog",     icon:"✍"},
@@ -85,7 +91,8 @@ export default function AdminPanel() {
   const [editMsg, setEditMsg]         = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState<string|null>(null);
   const [deleteStatus, setDeleteStatus]   = useState<Record<string,"loading"|"done">>({});
-  const [blogSearch, setBlogSearch]   = useState("");
+  const [blogSearch, setBlogSearch]   = useState(""); 
+  const [editAddMenu, setEditAddMenu] = useState(false);
 
   // ── Gallery state ────────────────────────────────────────────
   const [galleryItems, setGalleryItems]   = useState<GalleryItem[]>([]);
@@ -168,15 +175,15 @@ export default function AdminPanel() {
 
   const wordCount = (f:FormData) => f.blocks.reduce((acc,b)=>{const w=(s:string)=>s.split(/\s+/).filter(Boolean).length;return acc+w(b.content)+(b.items||[]).reduce((a,s)=>a+w(s),0);},0);
 
-  const checks = (f:FormData) => [
-    {label:"Cover image path added",        done:!!f.coverImage},
-    {label:"Title written (20+ chars)",      done:f.title.length>=20},
-    {label:"Excerpt added (40+ chars)",      done:f.excerpt.length>=40},
-    {label:"Intro paragraph written",        done:f.blocks.some(b=>b.type==="intro"&&b.content.length>30)},
-    {label:"At least 3 sections added",      done:f.blocks.filter(b=>b.type==="h2").length>=3},
-    {label:"600+ word target reached",       done:wordCount(f)>=600},
-    {label:"Meta keywords added (5+ terms)", done:f.metaKeywords.split(",").filter(k=>k.trim()).length>=5},
-  ];
+ const checks = (f:FormData) => [
+  {label:"Cover image path added", done:!!f.coverImage},
+  {label:"Title written (20+ chars)", done:f.title.length>=20},
+  {label:"Excerpt added (40+ chars)", done:f.excerpt.length>=40},
+  {label:"At least 3 sections added", done:f.blocks.filter(b=>b.type==="h2").length>=3},
+  {label:"Meta title (Max 60 chars)", done: f.metaTitle.trim().length > 0 && f.metaTitle.length <= 60,},
+  {label:"Meta description (Max 165 chars)", done: f.metaDescription.trim().length > 0 && f.metaDescription.length <= 165,},
+  {label:"Meta keywords added (5+ terms)", done:f.metaKeywords.split(",").filter(k=>k.trim()).length>=3},
+];
 
   const writeChecks = checks(form);  const writeReady  = writeChecks.every(c=>c.done);
   const editChecks  = checks(editForm); const editReady   = editChecks.every(c=>c.done);
@@ -213,7 +220,7 @@ export default function AdminPanel() {
     }catch{}
     setDeleteConfirm(null);
   };
-  const openEdit = (post:BlogPost) => {setEditPost(post);setEditForm(postToForm(post));setEditStatus("idle");setEditMsg("");setManageView("edit");};
+  const openEdit = (post:BlogPost) => {setEditPost(post);setEditForm(postToForm(post));setEditStatus("idle");setEditMsg("");setEditAddMenu(false);setManageView("edit");};
   const filteredPosts = posts.filter(p=>p.title.toLowerCase().includes(blogSearch.toLowerCase())||p.category.toLowerCase().includes(blogSearch.toLowerCase()));
 
   // ── Upload helper ─────────────────────────────────────────────
@@ -451,7 +458,7 @@ export default function AdminPanel() {
               {/* Details */}
               <div style={{background:"#fff",borderRadius:"14px",border:"1px solid rgba(2,44,69,.07)",padding:"20px",marginBottom:"16px"}}>
                 <p style={{fontSize:"13px",fontWeight:800,color:"#022C45",textTransform:"uppercase",letterSpacing:"1px",margin:"0 0 16px"}}>Article Details</p>
-                <div style={{marginBottom:"14px"}}><label className="lbl">Title *</label><input className="ai" placeholder="e.g. Complete Guide to Studying in Germany 2026" value={form.title} onChange={e=>setField("title",e.target.value)}/>{form.title&&<p style={{fontSize:"11px",color:"#9CA3AF",margin:"5px 0 0"}}>URL: <code style={{color:"#F16101"}}>/blog/{slugify(form.title)}</code></p>}</div>
+                <div style={{marginBottom:"14px"}}><label className="lbl">Title *</label><input className="ai" placeholder="e.g. Complete Guide to Studying in Germany 2026" value={form.title} onChange={e=>setField("title",e.target.value)}/></div>
                 <div style={{marginBottom:"14px"}}><label className="lbl">Excerpt *</label><textarea className="at" rows={2} placeholder="1–2 sentences for blog cards and Google..." value={form.excerpt} onChange={e=>setField("excerpt",e.target.value)}/><p style={{fontSize:"11px",color:form.excerpt.length>160?"#F16101":"#9CA3AF",margin:"4px 0 0"}}>{form.excerpt.length}/160</p></div>
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:"12px"}}>
                   <div><label className="lbl">Category</label><select className="ai" value={form.category} onChange={e=>setField("category",e.target.value)} style={{appearance:"none",cursor:"pointer"}}>{CATEGORIES.map(c=><option key={c}>{c}</option>)}</select></div>
@@ -461,6 +468,26 @@ export default function AdminPanel() {
               </div>
               {renderBlockEditor(form,wH,addMenu,setAddMenu)}
               {/* SEO */}
+                <div style={{marginBottom:"14px"}}>
+                  <label className="lbl">Meta Title (55–60 characters)</label>
+                  <input className="ai" value={form.metaTitle} onChange={e=>setField("metaTitle", e.target.value)} placeholder="e.g. Study in Germany 2026 — Visa Guide | Edification"/>
+                  <p style={{fontSize: "11px", color: form.metaTitle.length > 60 ? "#dc2626" : "#9CA3AF", margin: "4px 0 0",}} >
+                    {form.metaTitle.length}/60 </p>
+                </div>
+
+                <div style={{marginBottom:"14px"}}>
+                  <label className="lbl">Meta Description (155–165 characters)</label> 
+                <textarea className="at" rows={3} maxLength={165} value={form.metaDescription} onChange={e=>setField("metaDescription", e.target.value)} placeholder="Short SEO summary for Google search results..."/>
+                 <p style={{fontSize: "11px", color: form.metaDescription.length > 165 ? "#dc2626" : "#9CA3AF", margin: "4px 0 0",}}>
+                  {form.metaDescription.length}/165
+                </p>
+                </div>
+                <div style={{marginBottom:"14px"}}>
+                  <label className="lbl">SEO URL Slug (3–6 words)</label>
+                  <input className="ai" value={form.slug} onChange={e=>setField("slug", slugify(e.target.value))} placeholder="short-seo-slug"/>
+                  <p style={{fontSize:"11px",color:"#9CA3AF",margin:"4px 0 0"}}>/blog/{form.slug}</p>
+                </div>
+
               <div style={{background:"#fff",borderRadius:"14px",border:"1px solid rgba(2,44,69,.07)",padding:"20px",marginBottom:"20px"}}>
                 <p style={{fontSize:"13px",fontWeight:800,color:"#022C45",textTransform:"uppercase",letterSpacing:"1px",margin:"0 0 14px"}}>SEO & Meta Keywords</p>
                 <textarea className="at" rows={3} placeholder="Comma-separated keywords..." value={form.metaKeywords} onChange={e=>setField("metaKeywords",e.target.value)}/>
@@ -472,6 +499,7 @@ export default function AdminPanel() {
               {writeStatus==="error"&&<div style={{marginTop:"12px",padding:"12px 16px",background:"#fef2f2",border:"1px solid #fecaca",borderRadius:"10px"}}><p style={{margin:0,fontSize:"13px",color:"#dc2626",fontWeight:600}}>⚠ {writeMsg}</p></div>}
               {!writeReady&&writeStatus!=="error"&&<p style={{textAlign:"center",fontSize:"12px",color:"#9CA3AF",marginTop:"10px"}}>Complete all checklist items to enable publishing.</p>}
             </div>
+            
             <div>{renderSidebar(form,writeChecks)}</div>
           </div>
         ):(
@@ -480,9 +508,9 @@ export default function AdminPanel() {
             {form.coverImage&&<div style={{borderRadius:"12px",overflow:"hidden",aspectRatio:"16/7",background:"#e8ecf0",marginBottom:"28px"}}><img src={form.coverImage} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}}/></div>}
             <h1 style={{fontSize:"30px",fontWeight:900,color:"#022C45",lineHeight:1.15,marginBottom:"20px"}}>{form.title||"Article Title"}</h1>
             {form.blocks.map((b,i)=>{
-              if(b.type==="intro"||b.type==="p") return<p key={i} style={{fontSize:b.type==="intro"?17:15,fontWeight:b.type==="intro"?600:400,color:b.type==="intro"?"#022C45":"#374151",lineHeight:1.8,marginBottom:"20px"}}>{b.content||<em style={{color:"#9CA3AF"}}>Empty...</em>}</p>;
-              if(b.type==="h2") return<div key={i}><h2 style={{fontSize:"22px",fontWeight:900,color:"#022C45",margin:"28px 0 10px"}}><span style={{color:"#F16101",marginRight:"6px"}}>▌</span>{b.heading}</h2><p style={{fontSize:"15px",color:"#374151",lineHeight:1.8}}>{b.content}</p></div>;
-              if(b.type==="quote") return<div key={i} style={{margin:"20px 0",padding:"16px 18px",background:"#F0FBFD",borderLeft:"4px solid #07CBEB",borderRadius:"0 10px 10px 0"}}><p style={{margin:0,fontSize:"14px",fontWeight:600,color:"#022C45",fontStyle:"italic",lineHeight:1.6}}>{b.content}</p></div>;
+              if(b.type==="intro"||b.type==="p") return<p key={i} style={{fontSize:b.type==="intro"?17:15,fontWeight:b.type==="intro"?600:400,color:b.type==="intro"?"#022C45":"#374151",lineHeight:1.8,marginBottom:"20px"}} dangerouslySetInnerHTML={{__html:b.content?.replace(/href="([^"]*)"/g,'href="$1" style="color: #F16101; text-decoration: underline;"')||"<em style='color: #9CA3AF'>Empty...</em>"}}/>;
+              if(b.type==="h2") return<div key={i}><h2 style={{fontSize:"22px",fontWeight:900,color:"#022C45",margin:"28px 0 10px"}}><span style={{color:"#F16101",marginRight:"6px"}}>▌</span>{b.heading}</h2><p style={{fontSize:"15px",color:"#374151",lineHeight:1.8}} dangerouslySetInnerHTML={{__html:b.content?.replace(/href="([^"]*)"/g,'href="$1" style="color: #F16101; text-decoration: underline;"')||""}}/></div>;
+              if(b.type==="quote") return<div key={i} style={{margin:"20px 0",padding:"16px 18px",background:"#F0FBFD",borderLeft:"4px solid #07CBEB",borderRadius:"0 10px 10px 0"}}><p style={{margin:0,fontSize:"14px",fontWeight:600,color:"#022C45",fontStyle:"italic",lineHeight:1.6}} dangerouslySetInnerHTML={{__html:b.content?.replace(/href="([^"]*)"/g,'href="$1" style="color: #07CBEB; text-decoration: underline;"')||""}}/></div>;
               if(b.type==="list") return<div key={i} style={{marginBottom:"16px"}}>{(b.items||[]).filter(Boolean).map((item,j)=><div key={j} style={{display:"flex",gap:"10px",padding:"10px 12px",background:"#F9FAFB",borderRadius:"8px",marginBottom:"6px",fontSize:"14px",color:"#374151"}}><div style={{width:"18px",height:"18px",borderRadius:"5px",background:"rgba(241,97,1,.1)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#F16101" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>{item}</div>)}</div>;
               return null;
             })}
@@ -543,8 +571,19 @@ export default function AdminPanel() {
                     <p style={{margin:0,fontSize:"13px",fontWeight:700,color:"#92400e"}}>Editing: <span style={{color:"#022C45"}}>{editPost.title}</span></p>
                   </div>
                   <div style={{background:"#fff",borderRadius:"14px",border:"1px solid rgba(2,44,69,.07)",padding:"20px",marginBottom:"16px"}}>
-                    <label className="lbl">Cover Image Path</label><input className="ai" value={editForm.coverImage} onChange={e=>setEditField("coverImage",e.target.value)} placeholder="/images/blogs/..."/>
-                    {editForm.coverImage&&<div style={{marginTop:"10px",borderRadius:"8px",overflow:"hidden",aspectRatio:"16/6",background:"#e8ecf0"}}><img src={editForm.coverImage} alt="" style={{width:"100%",height:"100%",objectFit:"cover"}} onError={e=>{(e.target as HTMLImageElement).style.display="none";}}/></div>}
+                    <label className="lbl">Cover Image</label>
+                    <label style={{display:"block",cursor:"pointer",marginBottom:"10px"}}>
+                      <div style={{border:"2px dashed rgba(2,44,69,0.15)",borderRadius:"12px",padding:"20px",textAlign:"center",background:"rgba(2,44,69,0.02)",cursor:"pointer"}}
+                        onDragOver={e=>{e.preventDefault();(e.currentTarget as HTMLDivElement).style.borderColor="#F16101";}}
+                        onDragLeave={e=>{(e.currentTarget as HTMLDivElement).style.borderColor="rgba(2,44,69,0.15)";}}
+                        onDrop={async e=>{e.preventDefault();(e.currentTarget as HTMLDivElement).style.borderColor="rgba(2,44,69,0.15)";const file=e.dataTransfer.files[0];if(!file)return;await uploadFile(file,"blogs",()=>{},(path)=>setEditField("coverImage",path),(err)=>alert(err));}}>
+                        {editForm.coverImage
+                          ?<div><img src={editForm.coverImage} alt="" style={{maxHeight:"80px",maxWidth:"100%",borderRadius:"6px",marginBottom:"6px",objectFit:"cover"}}/><p style={{margin:0,fontSize:"12px",color:"#16a34a",fontWeight:700}}>✓ {editForm.coverImage.split("/").pop()}</p><p style={{margin:"3px 0 0",fontSize:"11px",color:"#9CA3AF"}}>Click or drag to replace</p></div>
+                          :<div><div style={{fontSize:"24px",marginBottom:"6px"}}>🖼</div><p style={{margin:"0 0 3px",fontSize:"13px",fontWeight:700,color:"#022C45"}}>Click to browse or drag & drop</p><p style={{margin:0,fontSize:"11px",color:"#9CA3AF"}}>JPG, PNG, WebP · 1200×630px recommended · Max 20MB</p></div>
+                        }
+                      </div>
+                      <input type="file" accept="image/*" style={{display:"none"}} onChange={async e=>{const file=e.target.files?.[0];if(!file)return;await uploadFile(file,"blogs",()=>{},(path)=>setEditField("coverImage",path),(err)=>alert(err));e.target.value="";}}/>
+                    </label>
                   </div>
                   <div style={{background:"#fff",borderRadius:"14px",border:"1px solid rgba(2,44,69,.07)",padding:"20px",marginBottom:"16px"}}>
                     <p style={{fontSize:"13px",fontWeight:800,color:"#022C45",textTransform:"uppercase",letterSpacing:"1px",margin:"0 0 16px"}}>Article Details</p>
@@ -556,7 +595,32 @@ export default function AdminPanel() {
                       <div><label className="lbl">Author Role</label><input className="ai" value={editForm.authorRole} onChange={e=>setEditField("authorRole",e.target.value)}/></div>
                     </div>
                   </div>
-                  {renderBlockEditor(editForm,eH,false,()=>{})}
+
+                  {renderBlockEditor(editForm,eH,editAddMenu,setEditAddMenu)}
+                  <div style={{marginBottom:"14px"}}>
+                    <label className="lbl">Meta Title (55–60 characters)</label>
+                    <input className="ai" value={editForm.metaTitle} onChange={e=>setEditField("metaTitle", e.target.value)} placeholder="e.g. Study in Germany 2026 — Visa Guide | Edification"/>
+                   <p style={{fontSize: "11px", color: editForm.metaTitle.length > 60 ? "#dc2626" : "#9CA3AF", margin: "4px 0 0",}}>
+                       {editForm.metaTitle.length}/60
+                   </p>
+                  </div>
+
+                  <div style={{marginBottom:"14px"}}>
+                    <label className="lbl">Meta Description (155–165 characters)</label>
+                    <textarea className="at" rows={3} maxLength={165} value={editForm.metaDescription} onChange={e=>setEditField("metaDescription", e.target.value)} placeholder="Short SEO summary for Google search results..." />
+                    <p style={{fontSize: "11px", color: editForm.metaDescription.length > 165 ? "#dc2626" : "#9CA3AF", margin: "4px 0 0",}}>
+                     {editForm.metaDescription.length}/165
+                    </p>
+                  </div>
+
+                  <div style={{marginBottom:"14px"}}>
+                    <label className="lbl">SEO URL Slug (3–6 words)</label>
+                    <input className="ai" value={editForm.slug || slugify(editForm.title)} onChange={e=>setEditField("slug", slugify(e.target.value))} placeholder="short-seo-slug"/>
+                    <p style={{fontSize:"11px",color:"#9CA3AF",margin:"4px 0 0"}}>
+                      /blog/{editForm.slug || slugify(editForm.title)}
+                    </p>
+                  </div>
+
                   <div style={{background:"#fff",borderRadius:"14px",border:"1px solid rgba(2,44,69,.07)",padding:"20px",marginBottom:"20px"}}>
                     <p style={{fontSize:"13px",fontWeight:800,color:"#022C45",textTransform:"uppercase",letterSpacing:"1px",margin:"0 0 14px"}}>SEO & Meta Keywords</p>
                     <textarea className="at" rows={3} value={editForm.metaKeywords} onChange={e=>setEditField("metaKeywords",e.target.value)} placeholder="Comma-separated keywords..."/>
