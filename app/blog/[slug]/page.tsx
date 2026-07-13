@@ -24,6 +24,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   const [related, setRelated]   = useState<BlogPost[]>([]);
   const [loading, setLoading]   = useState(true);
   const [activeSection, setActiveSection] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -144,6 +145,20 @@ useEffect(() => {
         .keyword-tag { background: rgba(7,203,235,0.08); border: 1px solid rgba(7,203,235,0.2); color: #022C45; font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
         .blog-list-item { display: flex; align-items: flex-start; gap: 12px; padding: 13px 16px; border-radius: 10px; background: #F9FAFB; border: 1px solid rgba(2,44,69,0.06); font-size: 15px; color: #374151; line-height: 1.6; margin-bottom: 10px; }
         .blog-quote { margin: 28px 0; padding: 22px 24px; background: #F0FBFD; border-left: 4px solid #07CBEB; border-radius: 0 14px 14px 0; }
+
+        .blog-faq-wrap { margin-top: 48px; padding: 32px 28px; background: #F9FAFB; border-radius: 16px; border: 1px solid rgba(2,44,69,0.06); }
+        .blog-faq-item { background: #ffffff; border: 1px solid rgba(2,44,69,0.08); border-left: 4px solid #F16101; border-radius: 10px; margin-bottom: 12px; overflow: hidden; transition: box-shadow 0.3s ease, border-color 0.3s ease; }
+        .blog-faq-item:last-child { margin-bottom: 0; }
+        .blog-faq-item.is-open { box-shadow: 0 8px 24px rgba(2,44,69,0.06); border-color: rgba(241,97,1,0.15); }
+        .blog-faq-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 20px; background: none; border: none; cursor: pointer; text-align: left; font-family: inherit; }
+        .blog-faq-btn span { font-size: 15px; font-weight: 700; color: #022C45; line-height: 1.5; transition: color 0.25s ease; }
+        .blog-faq-item.is-open .blog-faq-btn span { color: #F16101; }
+        .blog-faq-chevron { flex-shrink: 0; width: 32px; height: 32px; border-radius: 8px; background: rgba(2,44,69,0.04); display: flex; align-items: center; justify-content: center; color: #9CA3AF; transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), background 0.25s ease, color 0.25s ease; }
+        .blog-faq-item.is-open .blog-faq-chevron { transform: rotate(180deg); background: rgba(241,97,1,0.1); color: #F16101; }
+        .blog-faq-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.22,1,0.36,1); }
+        .blog-faq-item.is-open .blog-faq-body { grid-template-rows: 1fr; }
+        .blog-faq-body-inner { overflow: hidden; }
+        .blog-faq-answer { padding: 0 20px 18px; font-size: 14.5px; color: #374151; line-height: 1.8; border-top: 1px solid rgba(2,44,69,0.05); padding-top: 14px; margin: 0 20px 18px; }
 
         @media (max-width: 1024px) { .blog-layout { flex-direction: column !important; } .sidebar-col { display: none !important; } }
         @media (max-width: 640px)  { .related-grid { grid-template-columns: 1fr !important; } }
@@ -280,6 +295,41 @@ useEffect(() => {
               }
               return null;
             })}
+
+            {/* FAQ Section */}
+            {(blog.faqs ?? []).length > 0 && (
+              <div className="blog-faq-wrap" id="faqs">
+                <h2 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 900, color: "#022C45", margin: "0 0 24px", lineHeight: 1.25, letterSpacing: "-0.4px" }}>
+                  <span style={{ color: "#F16101", marginRight: "8px", fontSize: "0.7em" }}>▌</span>
+                  Frequently Asked Questions
+                </h2>
+                {(blog.faqs ?? []).map((faq, index) => {
+                  const isOpen = openFaq === index;
+                  return (
+                    <div key={index} className={`blog-faq-item${isOpen ? " is-open" : ""}`}>
+                      <button
+                        type="button"
+                        className="blog-faq-btn"
+                        onClick={() => setOpenFaq(isOpen ? null : index)}
+                        aria-expanded={isOpen}
+                      >
+                        <span>{faq.question}</span>
+                        <div className="blog-faq-chevron">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                          </svg>
+                        </div>
+                      </button>
+                      <div className="blog-faq-body">
+                        <div className="blog-faq-body-inner">
+                          <p className="blog-faq-answer">{faq.answer}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
 
             {/* Tags */}
             <div style={{ marginTop: "56px", paddingTop: "28px", borderTop: "1px solid rgba(2,44,69,0.08)" }}>

@@ -32,5 +32,5 @@ export interface BlogPost {
   metaTitle?: string;
   metaDescription?: string;
   content: BlogSection[];
-  faqs: BlogFaq[];
+  faqs?: BlogFaq[];
 }
