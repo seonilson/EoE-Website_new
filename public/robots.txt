@@ -8,4 +8,4 @@ Disallow: /api
 Host: https://www.edificationoverseas.com
 
 # Sitemaps
-Sitemap: https://www.edificationoverseas.com/sitemap.xml
+Sitemap: https://edificationoverseas.com/sitemap.xml
