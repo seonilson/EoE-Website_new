@@ -5,6 +5,11 @@
 // Client components fetch from /api/blogs at runtime.
 // ─────────────────────────────────────────────────────────────
 
+export interface BlogFaq {
+  question: string;
+  answer: string;
+}
+
 export interface BlogSection {
   type: 'h2' | 'h3' | 'p' | 'list' | 'quote';
   content?: string;
@@ -27,4 +32,5 @@ export interface BlogPost {
   metaTitle?: string;
   metaDescription?: string;
   content: BlogSection[];
+  faqs: BlogFaq[];
 }

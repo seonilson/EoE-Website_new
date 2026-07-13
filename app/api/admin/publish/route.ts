@@ -77,6 +77,7 @@ export async function POST(req: Request) {
       authorRole: escapeStr(authorRole) || 'Editorial',
       authorImage: '/images/logo-icon.png',
       content,
+      faqs: (form.faqs || []).map((faq: any) => ({question: escapeStr(faq.question), answer: escapeStr(faq.answer),})),
       metaTitle: form.metaTitle || "",
       metaDescription: form.metaDescription || "",
     };

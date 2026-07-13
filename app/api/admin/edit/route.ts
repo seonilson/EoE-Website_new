@@ -12,9 +12,7 @@ export async function POST(req: Request) {
     // ── Auth ──────────────────────────────────────────────────
     const cookie = req.headers.get('cookie') || '';
     const token  = cookie.split(';').find(c => c.trim().startsWith('admin_token='))?.split('=')[1]?.trim();
-    if (!process.env.ADMIN_PASSWORD || token !== process.env.ADMIN_PASSWORD) {
-      return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
-    }
+    if (!process.env.ADMIN_PASSWORD || token !== process.env.ADMIN_PASSWORD) { return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });}
 
     const { slug, form } = await req.json();
     const { title, excerpt, category, coverImage, metaKeywords, author, authorRole, readTime, blocks } = form;
@@ -74,6 +72,7 @@ export async function POST(req: Request) {
       metaDescription: form.metaDescription || "",
       slug:form.slug || "",
       content,
+      faqs: (form.faqs || []).map((faq: any) => ({ question: escapeStr(faq.question), answer: escapeStr(faq.answer),})),
     };
 
     fs.writeFileSync(filePath, JSON.stringify(posts, null, 2), 'utf-8');

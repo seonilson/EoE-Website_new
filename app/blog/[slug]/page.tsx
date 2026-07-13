@@ -232,9 +232,13 @@ useEffect(() => {
                   key={index} 
                   style={{ fontSize: isFirst ? "17px" : "15.5px", fontWeight: isFirst ? 600 : 400, color: isFirst ? "#022C45" : "#374151", lineHeight: 1.85, marginBottom: "24px" }}
                   dangerouslySetInnerHTML={{
-                    __html: (section.content || "")
-                      .replace(/href=["']([^"']*)["']/g, 'href="$1" style="color: #F16101; text-decoration: underline;" target="_blank" rel="noopener noreferrer"')
-                  }}
+                  __html: (section.content || "")
+                    .replace(/\n/g, "<br />")
+                    .replace(
+                      /href=["']([^"']*)["']/g,
+                      'href="$1" style="color:#F16101;text-decoration:underline;" target="_blank" rel="noopener noreferrer"'
+                    )
+                }}
                 />;
               }
               if (section.type === "list") {
