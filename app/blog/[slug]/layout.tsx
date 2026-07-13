@@ -17,6 +17,7 @@ async function getPost(slug: string): Promise<BlogPost | null> {
   }
 }
 
+
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
 ): Promise<Metadata> {
@@ -29,15 +30,17 @@ export async function generateMetadata(
 
   const title = post.metaTitle || `${post.title} | Edification Overseas`; 
   const description = post.metaDescription || post.excerpt;
+  const keywords = post.metaKeywords ?.split(",").map((k) => k.trim()).filter(Boolean) || [];
 
   return {
     title,
     description,
-    alternates: { canonical: `https://www.edificationoverseas.com/blog/${post.slug}/` },
+    alternates: { canonical: `https://www.edificationoverseas.in/blog/${post.slug}/` },
+    keywords,
     openGraph: {
       title,
       description,
-      url: `https://www.edificationoverseas.com/blog/${post.slug}/`,
+      url: `https://www.edificationoverseas.in/blog/${post.slug}/`,
       siteName: "Edification Overseas",
       images: post.coverImage ? [{ url: post.coverImage, width: 1200, height: 630, alt: post.title }] : undefined,
       type: "article",
