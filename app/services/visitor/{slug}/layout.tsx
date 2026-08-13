@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Visitor Visa Consultants in Ahmedabad — Tourism & Short-Stay Visa | Edification Overseas",
   description: "Expert visitor and tourist visa consultancy in Ahmedabad, Gujarat. UK visitor visa, Schengen visa, US visitor visa, Canada visitor visa and more. ICEF-accredited consultants at Edification Overseas.",
   keywords: ["visitor visa consultants Ahmedabad", "tourist visa consultants Gujarat", "Schengen visa consultants Ahmedabad", "UK visitor visa India", "Canada visitor visa India", "US tourist visa Ahmedabad", "short stay visa consultants India", "tourism visa consultants Gujarat"],
-  alternates: { canonical: "https://www.edificationoverseas.in/services/visitor" },
+  alternates: { canonical: "https://edificationoverseas.in/services/visitor" },
   openGraph: {
     title: "Visitor Visa Consultants in Ahmedabad — Tourism & Short-Stay Visa | Edification Overseas",
     description: "Expert visitor and tourist visa consultancy in Ahmedabad, Gujarat. UK visitor visa, Schengen visa, US visitor visa, Canada visitor visa and more. ICEF-accredited consultants at Edification Overseas.",
-    url: "https://www.edificationoverseas.in/services/visitor",
+    url: "https://edificationoverseas.in/services/visitor",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Visitor Visa Consultants in Ahmedabad — Tourism & Short-Stay Visa | Edification Overseas" }],
     type: "website",

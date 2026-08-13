@@ -37,12 +37,12 @@ export async function generateMetadata(
   return {
     title,
     description,
-    alternates: { canonical: `https://www.edificationoverseas.in/blog/${post.slug}/` },
+    alternates: { canonical: `https://edificationoverseas.in/blog/${post.slug}/` },
     keywords,
     openGraph: {
       title,
       description,
-      url: `https://www.edificationoverseas.in/blog/${post.slug}/`,
+      url: `https://edificationoverseas.in/blog/${post.slug}/`,
       siteName: "Edification Overseas",
       images: post.coverImage ? [{ url: post.coverImage, width: 1200, height: 630, alt: post.title }] : undefined,
       type: "article",

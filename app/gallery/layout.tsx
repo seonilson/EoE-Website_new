@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Gallery — Student Success Stories & Events | Edification Overseas",
   description: "Photos and moments from Edification Overseas Education. Student success celebrations, visa approvals, university fairs and counselling events in Ahmedabad, Gujarat.",
   keywords: ["edification overseas gallery, student visa success photos, overseas education events, study abroad success stories India"],
-  alternates: { canonical: "https://www.edificationoverseas.in/gallery" },
+  alternates: { canonical: "https://edificationoverseas.in/gallery" },
   openGraph: {
     title: "Gallery — Student Success Stories & Events | Edification Overseas",
     description: "Photos and moments from Edification Overseas Education. Student success celebrations, visa approvals, university fairs and counselling events in Ahmedabad, Gujarat.",
-    url: "https://www.edificationoverseas.in/gallery",
+    url: "https://edificationoverseas.in/gallery",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Gallery — Student Success Stories & Events | Edification Overseas" }],
     type: "website",

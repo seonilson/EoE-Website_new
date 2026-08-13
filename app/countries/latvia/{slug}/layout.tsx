@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in Latvia from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in Latvia for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. Affordable EU Degree, Baltic Region.",
   keywords: ["study in Latvia from India", "Latvia student visa India", "Latvian university admissions India", "study in Latvia Ahmedabad"],
-  alternates: { canonical: "https://www.edificationoverseas.in/countries/latvia" },
+  alternates: { canonical: "https://edificationoverseas.in/countries/latvia" },
   openGraph: {
     title: "Study in Latvia from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in Latvia. Visa process, top universities, scholarships and career pathways for Indian students. Affordable EU Degree, Baltic Region.",
-    url: "https://www.edificationoverseas.in/countries/latvia",
+    url: "https://edificationoverseas.in/countries/latvia",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in Latvia from India — Edification Overseas Ahmedabad" }],
     type: "website",

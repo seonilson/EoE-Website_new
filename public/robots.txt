@@ -5,7 +5,7 @@ Disallow: /admin
 Disallow: /api
 
 # Host
-Host: https://www.edificationoverseas.in
+Host: https://edificationoverseas.in
 
 # Sitemaps
-Sitemap: https://www.edificationoverseas.in/sitemap.xml
+Sitemap: https://edificationoverseas.in/sitemap.xml

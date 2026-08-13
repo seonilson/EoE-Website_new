@@ -2,7 +2,7 @@
 // Injects BreadcrumbList + page-type schema for country, service, about pages.
 // Usage: <PageSchema type="country" slug="australia" name="Australia" />
 
-const BASE_URL = "https://www.edificationoverseas.in";
+const BASE_URL = "https://edificationoverseas.in";
 
 type PageType = "country" | "service" | "about";
 

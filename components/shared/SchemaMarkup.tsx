@@ -4,7 +4,7 @@
 //         EducationalOrganization, FAQPage
 // ────────────────────────────────────────────────────────────────
 
-const BASE_URL = "https://www.edificationoverseas.in";
+const BASE_URL = "https://edificationoverseas.in";
 
 // ── 1. Organization + LocalBusiness (merged) ────────────────────
 const organizationSchema = {

@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in New Zealand from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in New Zealand for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. 3-Year Post-Study Work Visa.",
   keywords: ["study in New Zealand from India", "New Zealand student visa India", "NZ university admissions India", "study in New Zealand Ahmedabad"],
-  alternates: { canonical: "https://www.edificationoverseas.in/countries/new-zealand" },
+  alternates: { canonical: "https://edificationoverseas.in/countries/new-zealand" },
   openGraph: {
     title: "Study in New Zealand from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in New Zealand. Visa process, top universities, scholarships and career pathways for Indian students. 3-Year Post-Study Work Visa.",
-    url: "https://www.edificationoverseas.in/countries/new-zealand",
+    url: "https://edificationoverseas.in/countries/new-zealand",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in New Zealand from India — Edification Overseas Ahmedabad" }],
     type: "website",

@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in Hungary from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in Hungary for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. EU Degree, Affordable MBBS & Engineering.",
   keywords: ["study in Hungary from India", "Hungary student visa India", "Hungarian university admissions India", "MBBS in Hungary India"],
-  alternates: { canonical: "https://www.edificationoverseas.in/countries/hungary" },
+  alternates: { canonical: "https://edificationoverseas.in/countries/hungary" },
   openGraph: {
     title: "Study in Hungary from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in Hungary. Visa process, top universities, scholarships and career pathways for Indian students. EU Degree, Affordable MBBS & Engineering.",
-    url: "https://www.edificationoverseas.in/countries/hungary",
+    url: "https://edificationoverseas.in/countries/hungary",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in Hungary from India — Edification Overseas Ahmedabad" }],
     type: "website",
