@@ -4,7 +4,7 @@
 // Usage: <BlogArticleSchema post={blog} />
 // ────────────────────────────────────────────────────────────────
 
-const BASE_URL = "https://www.edificationoverseas.com";
+const BASE_URL = "https://www.edificationoverseas.in";
 
 interface BlogPost {
   slug: string;

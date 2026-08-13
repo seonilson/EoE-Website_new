@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     "international student destinations India",
     "study abroad countries list India",
   ],
-  alternates: { canonical: "https://www.edificationoverseas.com/countries" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries" },
   openGraph: {
     title: "Study Abroad Destinations — 33+ Countries | Edification Overseas Ahmedabad",
     description: "Explore 33+ study abroad destinations with Edification Overseas. Student visa guides, scholarships and PR pathways for UK, Canada, Singapore, Germany, Cyprus & more.",
-    url: "https://www.edificationoverseas.com/countries",
+    url: "https://www.edificationoverseas.in/countries",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study Abroad Destinations — Edification Overseas" }],
     type: "website",

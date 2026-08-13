@@ -222,9 +222,9 @@ export default function AdminPanel() {
     {label:"Title written (20+ chars)",          done:f.title.length>=20},
     {label:"Excerpt added (40+ chars)",          done:f.excerpt.length>=40},
     {label:"At least 3 sections added",          done:f.blocks.filter(b=>b.type==="h2").length>=3},
-    {label:"Meta title (Max 60 chars)",          done: f.metaTitle.trim().length>0 && f.metaTitle.length<=60},
-    {label:"Meta description (Max 165 chars)",   done: f.metaDescription.trim().length>0 && f.metaDescription.length<=165},
-    {label:"Meta keywords added (5+ terms)",     done: f.metaKeywords.split(",").filter(k=>k.trim()).length>=3},
+    {label:"Meta title (Max 70 chars)",          done: f.metaTitle.trim().length>0 && f.metaTitle.length<=70},
+    {label:"Meta description (Max 175 chars)",   done: f.metaDescription.trim().length>0 && f.metaDescription.length<=175},
+    {label:"Meta keywords added (5+ terms)",     done: f.metaKeywords.split(",").filter(k=>k.trim()).length>=3}, 
   ];
 
   const writeChecks = checks(form);    const writeReady = writeChecks.every(c=>c.done);
@@ -609,33 +609,33 @@ useEffect(() => {
             <label className="lbl" style={{margin:0}}>Meta Title</label>
             <div style={{display:"flex",alignItems:"center",gap:"6px"}}>
               <div style={{width:"80px",height:"4px",borderRadius:"2px",background:"rgba(2,44,69,0.08)",overflow:"hidden"}}>
-                <div style={{height:"100%",width:`${Math.min((f.metaTitle.length/60)*100,100)}%`,background:f.metaTitle.length>60?"#dc2626":f.metaTitle.length>=55?"#22c55e":"#F16101",borderRadius:"2px",transition:"width .2s"}}/>
+                <div style={{height:"100%",width:`${Math.min((f.metaTitle.length/70)*100,100)}%`,background:f.metaTitle.length>70?"#dc2626":f.metaTitle.length>=55?"#22c55e":"#F16101",borderRadius:"2px",transition:"width .2s"}}/>
               </div>
-              <span style={{fontSize:"11px",fontWeight:700,color:f.metaTitle.length>60?"#dc2626":f.metaTitle.length>=55?"#22c55e":"#9CA3AF",minWidth:"40px",textAlign:"right"}}>{f.metaTitle.length}/60</span>
+              <span style={{fontSize:"11px",fontWeight:700,color:f.metaTitle.length>70?"#dc2626":f.metaTitle.length>=55?"#22c55e":"#9CA3AF",minWidth:"40px",textAlign:"right"}}>{f.metaTitle.length}/70</span>
             </div>
           </div>
           <input className="ai" value={f.metaTitle} onChange={e=>fieldSetter("metaTitle",e.target.value)}
             placeholder="e.g. Study in Germany 2026 | Edification Overseas"
-            maxLength={60}
-            style={{borderColor:f.metaTitle.length>60?"#dc2626":f.metaTitle.length>=55?"rgba(34,197,94,0.5)":"rgba(2,44,69,0.1)"}}/>
-          {f.metaTitle.length>60&&<p style={{fontSize:"11px",color:"#dc2626",margin:"4px 0 0",fontWeight:600}}>Over limit! Reduce by {f.metaTitle.length-60} characters.</p>}
-          {f.metaTitle.length>=55&&f.metaTitle.length<=60&&<p style={{fontSize:"11px",color:"#22c55e",margin:"4px 0 0",fontWeight:600}}>Perfect length!</p>}
+            maxLength={70}
+            style={{borderColor:f.metaTitle.length>70?"#dc2626":f.metaTitle.length>=55?"rgba(34,197,94,0.5)":"rgba(2,44,69,0.1)"}}/>
+          {f.metaTitle.length>70&&<p style={{fontSize:"11px",color:"#dc2626",margin:"4px 0 0",fontWeight:600}}>Over limit! Reduce by {f.metaTitle.length-70} characters.</p>}
+          {f.metaTitle.length>=55&&f.metaTitle.length<=70&&<p style={{fontSize:"11px",color:"#22c55e",margin:"4px 0 0",fontWeight:600}}>Perfect length!</p>}
         </div>
         <div style={{marginBottom:"16px"}}>
           <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:"6px"}}>
             <label className="lbl" style={{margin:0}}>Meta Description</label>
             <div style={{display:"flex",alignItems:"center",gap:"6px"}}>
               <div style={{width:"80px",height:"4px",borderRadius:"2px",background:"rgba(2,44,69,0.08)",overflow:"hidden"}}>
-                <div style={{height:"100%",width:`${Math.min((f.metaDescription.length/165)*100,100)}%`,background:f.metaDescription.length>165?"#dc2626":f.metaDescription.length>=155?"#22c55e":"#F16101",borderRadius:"2px",transition:"width .2s"}}/>
+                <div style={{height:"100%",width:`${Math.min((f.metaDescription.length/175)*100,100)}%`,background:f.metaDescription.length>175?"#dc2626":f.metaDescription.length>=175?"#22c55e":"#F16101",borderRadius:"2px",transition:"width .2s"}}/>
               </div>
-              <span style={{fontSize:"11px",fontWeight:700,color:f.metaDescription.length>165?"#dc2626":f.metaDescription.length>=155?"#22c55e":"#9CA3AF",minWidth:"50px",textAlign:"right"}}>{f.metaDescription.length}/165</span>
+              <span style={{fontSize:"11px",fontWeight:700,color:f.metaDescription.length>175?"#dc2626":f.metaDescription.length>=155?"#22c55e":"#9CA3AF",minWidth:"50px",textAlign:"right"}}>{f.metaDescription.length}/175</span>
             </div>
           </div>
-          <textarea className="at" rows={3} maxLength={170} value={f.metaDescription} onChange={e=>fieldSetter("metaDescription",e.target.value)}
-            placeholder="Short summary for Google search results (155-165 chars ideal)..."
+          <textarea className="at" rows={3} maxLength={175} value={f.metaDescription} onChange={e=>fieldSetter("metaDescription",e.target.value)}
+            placeholder="Short summary for Google search results (155-175 chars ideal)..."
             style={{borderColor:f.metaDescription.length>165?"#dc2626":f.metaDescription.length>=155?"rgba(34,197,94,0.5)":"rgba(2,44,69,0.1)"}}/>
-          {f.metaDescription.length>165&&<p style={{fontSize:"11px",color:"#dc2626",margin:"4px 0 0",fontWeight:600}}>Over limit! Reduce by {f.metaDescription.length-165} characters.</p>}
-          {f.metaDescription.length>=155&&f.metaDescription.length<=165&&<p style={{fontSize:"11px",color:"#22c55e",margin:"4px 0 0",fontWeight:600}}>Perfect length!</p>}
+          {f.metaDescription.length>175&&<p style={{fontSize:"11px",color:"#dc2626",margin:"4px 0 0",fontWeight:600}}>Over limit! Reduce by {f.metaDescription.length-175} characters.</p>}
+          {f.metaDescription.length>=155&&f.metaDescription.length<=175&&<p style={{fontSize:"11px",color:"#22c55e",margin:"4px 0 0",fontWeight:600}}>Perfect length!</p>}
         </div>
         <div style={{marginBottom:"16px"}}>
           <label className="lbl">SEO URL Slug</label>

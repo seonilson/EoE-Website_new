@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "UK Student Visa Consultants in Ahmedabad | Study in UK Experts",
   description: "Edification Overseas is leading UK student visa consultant in Ahmedabad offering complete support through expert UK visa consultants and study in UK consultants.",
   keywords: ["uk student visa consultants in ahmedabad", "uk visa consultants", "study in uk consultants"],
-  alternates: { canonical: "https://www.edificationoverseas.com/countries/united-kingdom" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries/united-kingdom" },
   openGraph: {
     title: "UK Student Visa Consultants in Ahmedabad | Study in UK Experts",
     description: "Edification Overseas is leading UK student visa consultant in Ahmedabad offering complete support through expert UK visa consultants and study in UK consultants.",
-    url: "https://www.edificationoverseas.com/countries/united-kingdom",
+    url: "https://www.edificationoverseas.in/countries/united-kingdom",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "UK Student Visa Consultants in Ahmedabad | Study in UK Experts" }],
     type: "website",

@@ -20,11 +20,11 @@ export const metadata: Metadata = {
     "study in UK from Vadodara",
     "overseas education Vadodara",
   ],
-  alternates: { canonical: "https://www.edificationoverseas.com/study-abroad-consultants-vadodara" },
+  alternates: { canonical: "https://www.edificationoverseas.in/study-abroad-consultants-vadodara" },
   openGraph: {
     title: "Study Abroad Consultants in Vadodara — Edification Overseas Gujarat",
     description: "ICEF-accredited overseas education consultants serving Vadodara, Gujarat. UK, Canada, Singapore, Germany & 30+ destinations. Book a free consultation.",
-    url: "https://www.edificationoverseas.com/study-abroad-consultants-vadodara",
+    url: "https://www.edificationoverseas.in/study-abroad-consultants-vadodara",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study Abroad Consultants in Vadodara — Edification Overseas" }],
     type: "website",

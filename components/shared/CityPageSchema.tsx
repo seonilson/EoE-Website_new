@@ -4,7 +4,7 @@
 // Usage: <CityPageSchema city="ahmedabad" />
 // ────────────────────────────────────────────────────────────────
 
-const BASE_URL = "https://www.edificationoverseas.com";
+const BASE_URL = "https://www.edificationoverseas.in";
 
 type City = "ahmedabad" | "surat" | "vadodara" | "rajkot";
 

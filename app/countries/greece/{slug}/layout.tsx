@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in Greece from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in Greece for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. EU Degree, Rich History, Affordable Living.",
   keywords: ["study in Greece from India", "Greece student visa India", "Greece university admissions India", "study in Greece Ahmedabad"],
-  alternates: { canonical: "https://www.edificationoverseas.com/countries/greece" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries/greece" },
   openGraph: {
     title: "Study in Greece from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in Greece. Visa process, top universities, scholarships and career pathways for Indian students. EU Degree, Rich History, Affordable Living.",
-    url: "https://www.edificationoverseas.com/countries/greece",
+    url: "https://www.edificationoverseas.in/countries/greece",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in Greece from India — Edification Overseas Ahmedabad" }],
     type: "website",

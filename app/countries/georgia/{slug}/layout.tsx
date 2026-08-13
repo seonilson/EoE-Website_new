@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in Georgia from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in Georgia for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. Low Tuition, English Medium, Easy Visa.",
   keywords: ["study in Georgia from India", "Georgia student visa India", "Georgia university admissions India", "cheap study abroad Georgia India", "study in Georgia Ahmedabad"],
-  alternates: { canonical: "https://www.edificationoverseas.com/countries/georgia" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries/georgia" },
   openGraph: {
     title: "Study in Georgia from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in Georgia. Visa process, top universities, scholarships and career pathways for Indian students. Low Tuition, English Medium, Easy Visa.",
-    url: "https://www.edificationoverseas.com/countries/georgia",
+    url: "https://www.edificationoverseas.in/countries/georgia",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in Georgia from India — Edification Overseas Ahmedabad" }],
     type: "website",
