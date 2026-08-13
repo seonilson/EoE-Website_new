@@ -6,6 +6,8 @@ import path from "path";
 export const dynamic = "force-dynamic"; 
 export const revalidate = 0;    
 
+
+
 async function getPost(slug: string): Promise<BlogPost | null> {
   try {
     const filePath = path.join(process.cwd(), "data", "blogs.json");
