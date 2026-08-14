@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     "study in UK from Surat",
     "study in Canada from Surat",
   ],
-  alternates: { canonical: "https://edificationoverseas.in/study-abroad-consultants-surat" },
+  alternates: { canonical: "https://www.edificationoverseas.in/study-abroad-consultants-surat" },
   openGraph: {
     title: "Study Abroad Consultants in Surat — Edification Overseas Gujarat",
     description: "ICEF-accredited overseas education consultants serving Surat, Gujarat. UK, Canada, Singapore, Germany & 30+ destinations. 98% visa success rate.",
-    url: "https://edificationoverseas.in/study-abroad-consultants-surat",
+    url: "https://www.edificationoverseas.in/study-abroad-consultants-surat",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study Abroad Consultants in Surat — Edification Overseas" }],
     type: "website",

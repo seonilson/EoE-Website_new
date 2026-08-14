@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in Belarus from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in Belarus for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. Affordable MBBS & Engineering.",
   keywords: ["study in Belarus from India", "Belarus student visa India", "MBBS in Belarus India", "Belarus university admissions India", "study in Belarus Ahmedabad"],
-  alternates: { canonical: "https://edificationoverseas.in/countries/belarus" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries/belarus" },
   openGraph: {
     title: "Study in Belarus from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in Belarus. Visa process, top universities, scholarships and career pathways for Indian students. Affordable MBBS & Engineering.",
-    url: "https://edificationoverseas.in/countries/belarus",
+    url: "https://www.edificationoverseas.in/countries/belarus",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in Belarus from India — Edification Overseas Ahmedabad" }],
     type: "website",

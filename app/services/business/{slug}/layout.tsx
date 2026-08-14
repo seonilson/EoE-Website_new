@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Business Visa Consultants in Ahmedabad — Edification Overseas",
   description: "Professional business visa consultancy in Ahmedabad, Gujarat. Schengen business visa, UK business visa, UAE business visa and more. Expert documentation support by ICEF-accredited consultants at Edification Overseas.",
   keywords: ["business visa consultants Ahmedabad", "Schengen business visa India", "UK business visa Ahmedabad", "business visa Gujarat", "corporate travel visa Ahmedabad", "investor visa India", "business visa application India", "visa consultants business Ahmedabad"],
-  alternates: { canonical: "https://edificationoverseas.in/services/business" },
+  alternates: { canonical: "https://www.edificationoverseas.in/services/business" },
   openGraph: {
     title: "Business Visa Consultants in Ahmedabad — Edification Overseas",
     description: "Professional business visa consultancy in Ahmedabad, Gujarat. Schengen business visa, UK business visa, UAE business visa and more. Expert documentation support by ICEF-accredited consultants at Edification Overseas.",
-    url: "https://edificationoverseas.in/services/business",
+    url: "https://www.edificationoverseas.in/services/business",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Business Visa Consultants in Ahmedabad — Edification Overseas" }],
     type: "website",

@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in Finland from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in Finland for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. Top Education System, Free Public Universities.",
   keywords: ["study in Finland from India", "Finland student visa India", "Finnish university admissions India", "study in Finland Ahmedabad"],
-  alternates: { canonical: "https://edificationoverseas.in/countries/finland" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries/finland" },
   openGraph: {
     title: "Study in Finland from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in Finland. Visa process, top universities, scholarships and career pathways for Indian students. Top Education System, Free Public Universities.",
-    url: "https://edificationoverseas.in/countries/finland",
+    url: "https://www.edificationoverseas.in/countries/finland",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in Finland from India — Edification Overseas Ahmedabad" }],
     type: "website",

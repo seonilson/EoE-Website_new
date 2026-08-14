@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://edificationoverseas.in',
+  siteUrl: 'https://www.edificationoverseas.in',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   changefreq: 'weekly',
@@ -33,7 +33,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      'https://edificationoverseas.in/sitemap.xml',
+      'https://www.edificationoverseas.com/sitemap.xml',
     ],
   },
 

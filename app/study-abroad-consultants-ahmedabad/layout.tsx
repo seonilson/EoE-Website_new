@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     "immigration consultants Ahmedabad",
     "free consultation study abroad Ahmedabad",
   ],
-  alternates: { canonical: "https://edificationoverseas.in/study-abroad-consultants-ahmedabad" },
+  alternates: { canonical: "https://www.edificationoverseas.in/study-abroad-consultants-ahmedabad" },
   openGraph: {
     title: "Study Abroad Consultants in Ahmedabad — Edification Overseas",
     description:
       "ICEF-accredited study abroad & visa consultants in Ahmedabad. Expert guidance for UK, Canada, Singapore, Germany & 30+ countries. 98% visa success rate.",
-    url: "https://edificationoverseas.in/study-abroad-consultants-ahmedabad",
+    url: "https://www.edificationoverseas.in/study-abroad-consultants-ahmedabad",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study Abroad Consultants in Ahmedabad — Edification Overseas" }],
     type: "website",

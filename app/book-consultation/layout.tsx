@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     "free student visa consultation Gujarat",
     "ICEF counsellor consultation Ahmedabad",
   ],
-  alternates: { canonical: "https://edificationoverseas.in/book-consultation" },
+  alternates: { canonical: "https://www.edificationoverseas.in/book-consultation" },
   openGraph: {
     title: "Book a Free Consultation — Edification Overseas Education",
     description: "Book your free study abroad consultation with Edification Overseas. Our certified counsellors will map your university, visa and scholarship pathway in one session.",
-    url: "https://edificationoverseas.in/book-consultation",
+    url: "https://www.edificationoverseas.in/book-consultation",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Book a Free Consultation — Edification Overseas Education" }],
     type: "website",

@@ -14,7 +14,7 @@ const primaryFont = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const BASE_URL = "https://edificationoverseas.in";
+const BASE_URL = "https://www.edificationoverseas.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),

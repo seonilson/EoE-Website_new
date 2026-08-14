@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Privacy Policy — Edification Overseas Education",
   description: "Read the privacy policy of Edification Overseas Education. How we collect, use and protect your personal data on our website and services.",
   keywords: ["edification overseas privacy policy, data protection overseas education"],
-  alternates: { canonical: "https://edificationoverseas.in/privacy" },
+  alternates: { canonical: "https://www.edificationoverseas.in/privacy" },
   openGraph: {
     title: "Privacy Policy — Edification Overseas Education",
     description: "Read the privacy policy of Edification Overseas Education. How we collect, use and protect your personal data on our website and services.",
-    url: "https://edificationoverseas.in/privacy",
+    url: "https://www.edificationoverseas.in/privacy",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Privacy Policy — Edification Overseas Education" }],
     type: "website",

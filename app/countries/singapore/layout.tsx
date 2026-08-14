@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Singapore Visa Consultants in Ahmedabad | Visa Agents & Work Visa Experts",
   description: "Looking for Singapore visa consultants in Ahmedabad? Our expert visa agents and work visa consultants in ahmedabad provide complete visa assistance and support.",
   keywords: ["Singapore visa consultants in Ahmedabad", "Singapore visa agents in Ahmedabad", "Singapore work visa consultants in Ahmedabad",],
-  alternates: { canonical: "https://edificationoverseas.in/countries/singapore" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries/singapore" },
   openGraph: {
     title: "Singapore Visa Consultants in Ahmedabad | Visa Agents & Work Visa Experts",
     description: "Looking for Singapore visa consultants in Ahmedabad? Our expert visa agents and work visa consultants in ahmedabad provide complete visa assistance and support.",
-    url: "https://edificationoverseas.in/countries/singapore",
+    url: "https://www.edificationoverseas.in/countries/singapore",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Singapore Visa Consultants in Ahmedabad | Visa Agents & Work Visa Experts" }],
     type: "website",

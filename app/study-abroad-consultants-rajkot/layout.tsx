@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     "overseas education Saurashtra Gujarat",
     "study abroad Saurashtra students",
   ],
-  alternates: { canonical: "https://edificationoverseas.in/study-abroad-consultants-rajkot" },
+  alternates: { canonical: "https://www.edificationoverseas.in/study-abroad-consultants-rajkot" },
   openGraph: {
     title: "Study Abroad Consultants in Rajkot — Edification Overseas Gujarat",
     description: "ICEF-accredited overseas education consultants serving Rajkot, Gujarat. UK, Canada, Singapore, Germany & 30+ destinations. 98% visa success rate.",
-    url: "https://edificationoverseas.in/study-abroad-consultants-rajkot",
+    url: "https://www.edificationoverseas.in/study-abroad-consultants-rajkot",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study Abroad Consultants in Rajkot — Edification Overseas" }],
     type: "website",

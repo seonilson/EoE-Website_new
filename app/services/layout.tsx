@@ -9,11 +9,11 @@ export const metadata: Metadata = {
     "expert visa immigration in Ahmedabad",
     "visa agent in Ahmedabad"
   ],
-  alternates: { canonical: "https://edificationoverseas.in/services" },
+  alternates: { canonical: "https://www.edificationoverseas.in/services" },
   openGraph: {
     title: "Immigration Consultants in Ahmedabad | Expert Visa Immigration Services",
     description: "Trusted immigration consultants offering expert visa immigration in Ahmedabad. Edification Overseas is leading immigration visa consultant & visa agent in Ahmedabad.",
-    url: "https://edificationoverseas.in/services",
+    url: "https://www.edificationoverseas.in/services",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Immigration Consultants in Ahmedabad | Expert Visa Immigration Services" }],
     type: "website",

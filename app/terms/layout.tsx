@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Terms & Conditions — Edification Overseas Education",
   description: "Read the terms and conditions of Edification Overseas Education. Service terms, refund policy and disclaimer for visa and study abroad consultancy services.",
   keywords: ["edification overseas terms conditions, visa consultancy terms, study abroad service terms"],
-  alternates: { canonical: "https://edificationoverseas.in/terms" },
+  alternates: { canonical: "https://www.edificationoverseas.in/terms" },
   openGraph: {
     title: "Terms & Conditions — Edification Overseas Education",
     description: "Read the terms and conditions of Edification Overseas Education. Service terms, refund policy and disclaimer for visa and study abroad consultancy services.",
-    url: "https://edificationoverseas.in/terms",
+    url: "https://www.edificationoverseas.in/terms",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Terms & Conditions — Edification Overseas Education" }],
     type: "website",

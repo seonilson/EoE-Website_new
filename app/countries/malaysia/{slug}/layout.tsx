@@ -4,11 +4,11 @@ export const metadata: Metadata = {
   title: "Study in Malaysia from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
   description: "Complete guide to studying in Malaysia for Indian students. Student visa process, top universities, scholarships, cost of living and career pathways. Expert guidance by ICEF-accredited consultants in Ahmedabad. Affordable, English-Medium, Asian Hub.",
   keywords: ["study in Malaysia from India", "Malaysia student visa India", "Malaysian university admissions India", "study in Malaysia Ahmedabad"],
-  alternates: { canonical: "https://edificationoverseas.in/countries/malaysia" },
+  alternates: { canonical: "https://www.edificationoverseas.in/countries/malaysia" },
   openGraph: {
     title: "Study in Malaysia from India 2026 — Visa, Universities & Scholarships | Edification Overseas",
     description: "Complete guide to studying in Malaysia. Visa process, top universities, scholarships and career pathways for Indian students. Affordable, English-Medium, Asian Hub.",
-    url: "https://edificationoverseas.in/countries/malaysia",
+    url: "https://www.edificationoverseas.in/countries/malaysia",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Study in Malaysia from India — Edification Overseas Ahmedabad" }],
     type: "website",

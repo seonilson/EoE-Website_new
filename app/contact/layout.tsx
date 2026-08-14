@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     "visa consultancy Ashram Road Ahmedabad",
     "free student visa consultation India",
   ],
-  alternates: { canonical: "https://edificationoverseas.in/contact" },
+  alternates: { canonical: "https://www.edificationoverseas.in/contact" },
   openGraph: {
     title: "Contact Edification Overseas — Book a Free Consultation in Ahmedabad",
     description: "Get in touch with Edification Overseas Education in Ahmedabad, Gujarat. Book a free consultation with our ICEF-accredited counsellors for student visa, business visa and study abroad guidance.",
-    url: "https://edificationoverseas.in/contact",
+    url: "https://www.edificationoverseas.in/contact",
     siteName: "Edification Overseas",
     images: [{ url: "/images/og-default.jpg", width: 1200, height: 630, alt: "Contact Edification Overseas — Book a Free Consultation" }],
     type: "website",
