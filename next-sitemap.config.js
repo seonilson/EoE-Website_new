@@ -33,7 +33,7 @@ module.exports = {
       },
     ],
     additionalSitemaps: [
-      'https://.edificationoverseas.com/sitemap.xml',
+      'https://edificationoverseas.com/sitemap.xml',
     ],
   },
 
