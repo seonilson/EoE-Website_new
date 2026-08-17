@@ -21,7 +21,7 @@ export function middleware(req: NextRequest) {
     url.hostname = 'www.edificationoverseas.in';
     url.port = '';
 
-    return NextResponse.redirect(url, 307);
+    return NextResponse.redirect(url, 301);
   }
 
   // ─────────────────────────────────────────────
