@@ -19,6 +19,7 @@ export function middleware(req: NextRequest) {
 
     url.protocol = 'https:';
     url.hostname = 'www.edificationoverseas.in';
+    url.port = '';
 
     return NextResponse.redirect(url, 307);
   }
