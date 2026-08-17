@@ -1,48 +1,32 @@
-// import { NextResponse } from 'next/server';
-// import type { NextRequest } from 'next/server';
-
-// export function middleware(req: NextRequest) {
-//   const { pathname } = req.nextUrl;
-
-//   // Only protect /admin routes — allow the login page itself through
-//   if (!pathname.startsWith('/admin') || pathname === '/admin/login') {
-//     return NextResponse.next();
-//   }
-
-//   const token = req.cookies.get('admin_token')?.value;
-//   const adminPassword = process.env.ADMIN_PASSWORD;
-//   console.log('adminPassword:', process.env.ADMIN_PASSWORD, 'token:', token);
-
-//   if (!adminPassword || token !== adminPassword) {
-//     return NextResponse.redirect(new URL('/admin/login', req.url));
-//   }
-
-//   return NextResponse.next();
-// }
-
-// export const config = {
-//   matcher: ['/admin/:path*'],
-// };
-
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  const { pathname, hostname } = req.nextUrl;
+  const { pathname } = req.nextUrl;
+
+  // Get the original hostname from proxy headers
+  const forwardedHost = req.headers.get('x-forwarded-host');
+  const host = forwardedHost || req.headers.get('host') || req.nextUrl.hostname;
+
+  // Remove port if present
+  const hostname = host.split(':')[0];
 
   // ─────────────────────────────────────────────
-  // 1. Redirect non-www → www
+  // NON-WWW → WWW REDIRECT
   // ─────────────────────────────────────────────
   if (hostname === 'edificationoverseas.in') {
     const url = req.nextUrl.clone();
+
+    url.protocol = 'https:';
     url.hostname = 'www.edificationoverseas.in';
 
-    return NextResponse.redirect(url, 301);
+    return NextResponse.redirect(url, 307);
   }
 
   // ─────────────────────────────────────────────
-  // 2. Admin authentication
+  // ADMIN AUTHENTICATION
   // ─────────────────────────────────────────────
+
   const isLoginPage = pathname.startsWith('/admin/login');
   const isAdminRoute = pathname.startsWith('/admin');
 
@@ -64,10 +48,6 @@ export function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Run middleware on all routes so that
-     * non-www → www redirect works everywhere.
-     */
     '/((?!_next/static|_next/image|favicon.ico).*)',
   ],
 };
